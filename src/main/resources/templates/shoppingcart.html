@@ -36,7 +36,9 @@
   </table>
   <div class="text-right">
     <h4>Total: <span th:text="${total}"></span></h4>
-    <a href="/checkout" class="btn btn-primary">Proceed to Checkout</a>
+    <button id="your-checkout-button-id">Checkout</button>
+
+    <script src="stripe-handler.js"></script>
   </div>
 </section>
 

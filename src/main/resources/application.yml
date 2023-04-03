@@ -23,5 +23,8 @@ springdoc:
   pathsToMatch: /api/**
 stripe:
   api:
-    key:
-      key=your_secret_key_here:pk_live_51MsqEFHeIlY7KZMg3kDSxAYrpuUliUal93C1EkJdwnRk4aQyxpxzWzDOMgVu0ZPcbisjz9tWR3Yln5Il63o4jL3d00uVAynC5V
+
+  success:
+
+  cancel:
+    url: https://yourdomain.com/cancel
