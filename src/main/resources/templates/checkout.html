@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+  <title>AffordableAutomation - Checkout</title>
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"/>
+
+  <!-- Stripe.js -->
+  <script src="https://js.stripe.com/v3/"></script>
+</head>
+<body>
+<!-- Navigation -->
+<!-- [Insert the navigation code from the previous examples] -->
+
+<!-- Checkout Form -->
+<section class="container my-5">
+  <h2 class="text-center mb-4">Checkout</h2>
+  <form id="payment-form">
+    <div id="card-element"></div>
+    <button id="submit-button" class="btn btn-primary mt-3">Pay</button>
+  </form>
+</section>
+
+<!-- Footer -->
+<!-- [Insert the footer code from the previous examples] -->
+
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script>
+  // Replace with your Stripe public key
+  var stripe = Stripe('your_public_key_here');
+  var elements = stripe.elements();
+
+  var card = elements.create('card');
+  card.mount('#card-element');
+
+  var form = document.getElementById('payment-form');
+  form.addEventListener('submit', function (event) {             event.preventDefault();
+    stripe.createToken(card).then(function (result) {
+      if (result.error) {
+        // Show error message to the user
+        console.error(result.error.message);
+      } else {
+        // Send the token to the server
+        stripeTokenHandler(result.token);
+      }
+    });
+  });
+
+  function stripeTokenHandler(token) {
+    // Create a hidden input to submit the token with the form
+    var input = document.createElement('input');
+    input.setAttribute('type', 'hidden');
+    input.setAttribute('name', 'stripeToken');
+    input.setAttribute('value', token.id);
+    form.appendChild(input);
+
+    // Submit the form
+    form.submit();
+  }
+</script>
+</body>
+</html>
