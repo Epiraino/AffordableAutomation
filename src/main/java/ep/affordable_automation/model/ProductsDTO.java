@@ -9,7 +9,6 @@ import java.math.BigDecimal;
 import lombok.Getter;
 import lombok.Setter;
 
-
 @Getter
 @Setter
 public class ProductsDTO {
@@ -28,5 +27,7 @@ public class ProductsDTO {
     @JsonFormat(shape = JsonFormat.Shape.STRING)
     @Schema(type = "string", example = "75.08")
     private BigDecimal price;
+
+
 
 }

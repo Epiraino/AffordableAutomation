@@ -21,7 +21,7 @@
           <a class="nav-link" href="/">Home</a>
         </li>
         <li class="nav-item active">
-          <a class="nav-link" href="#">Products</a>
+          <a class="nav-link" href="/products">Products</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" href="/contact">Contact</a>
@@ -45,6 +45,8 @@
           <h5 class="card-title" th:text="${product.title}">Product Title</h5>
           <p class="card-text" th:text="${product.description}">Product Description</p>
           <a href="#" class="btn btn-primary">View Details</a>
+          <!-- Inside the card-body div -->
+          <a th:href="@{/add-to-cart/{productId}(productId=${product.productId})}" class="btn btn-primary">Add to Cart</a>
         </div>
       </div>
     </div>
@@ -57,4 +59,4 @@
 </footer>
 
 <!-- Optional JavaScript -->
-<!-- jQuery first,
+
