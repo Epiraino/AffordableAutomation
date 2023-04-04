@@ -1,8 +1,8 @@
 spring:
   datasource:
-    url: ${JDBC_DATABASE_URL:jdbc:postgresql://localhost:5432/affordable-automation}
-    username: ${JDBC_DATABASE_USERNAME:postgres}
-    password: ${JDBC_DATABASE_PASSWORD:hunter}
+    url: ${JDBC_DATABASE_URL}
+    username: ${JDBC_DATABASE_USERNAME}
+    password: ${JDBC_DATABASE_PASSWORD}
     dbcp2:
       max-wait-millis: 30000
       validation-query: SELECT 1
@@ -21,10 +21,3 @@ spring:
         dialect: org.hibernate.dialect.PostgreSQLDialect
 springdoc:
   pathsToMatch: /api/**
-stripe:
-  api:
-
-  success:
-
-  cancel:
-    url: https://yourdomain.com/cancel
