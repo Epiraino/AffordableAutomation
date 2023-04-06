@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Shopping Cart</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+  <h2>Shopping Cart</h2>
+  <table class="table table-bordered">
+    <thead>
+    <tr>
+      <th>Product</th>
+      <th>Price</th>
+      <th>Quantity</th>
+      <th>Subtotal</th>
+      <th>Action</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="item : ${cartItems}">
+      <td th:text="${item.product.title}">Product Name</td>
+      <td th:text="${item.product.price}">Product Price</td>
+      <td th:text="${item.quantity}">Quantity</td>
+      <td th:text="${item.subtotal}">Subtotal</td>
+      <td>
+        <button class="btn btn-danger btn-sm" th:onclick="'removeItem(' + ${item.product.product_id} + ')'">Remove</button>
+      </td>
+    </tr>
+    </tbody>
+  </table>
+  <div class="text-right">
+    <h4>Total: <span th:text="${cartTotal}">$0.00</span></h4>
+    <a href="/checkout" class="btn btn-primary">Checkout</a>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

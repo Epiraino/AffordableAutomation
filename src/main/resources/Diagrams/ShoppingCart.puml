@@ -10,16 +10,16 @@ class ShoppingCart {
 }
 
 class CartItem {
--product: Product
+-product: Products
 -quantity: int
-+getProduct(): Product
++getProduct(): Products
 +setProduct(product: Product): void
 +getQuantity(): int
 +setQuantity(quantity: int): void
 +getSubtotal(): double
 }
 
-class Product {
+class Products {
 -product_id: int
 -title: String
 -description: String
@@ -27,6 +27,6 @@ class Product {
 }
 
 ShoppingCart "1" -- "*" CartItem : contains
-CartItem "1" -- "1" Product : refers to
+CartItem "1" -- "1" Products : refers to
 
 @enduml

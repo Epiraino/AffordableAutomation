@@ -1,35 +1,28 @@
 package ep.affordable_automation.controller;
 
 import ep.affordable_automation.domain.CartItem;
-import ep.affordable_automation.domain.Products;
 import ep.affordable_automation.domain.ShoppingCart;
 import ep.affordable_automation.model.ProductsDTO;
 import ep.affordable_automation.service.ProductsService;
 import jakarta.servlet.http.HttpSession;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
-import java.util.List;
-
 @Controller
 public class ShoppingCartController {
 
-    private final ProductsService productsService;
     private final ShoppingCart shoppingCart;
 
-    public ShoppingCartController(final ProductsService productsService,final ShoppingCart shoppingCart) {
-        this.productsService = productsService;
-        this.shoppingCart = shoppingCart;
+    @GetMapping("/cart")
+    public String showCart(Model model) {
+        model.addAttribute("cartItems", shoppingCart.getItems());
+        model.addAttribute("cartTotal", shoppingCart.getTotal());
+        return "shopping-cart";
     }
 
-    @GetMapping("/shopping-cart")
-    public String viewCart(Model model) {
-        model.addAttribute("cartItems", shoppingCart.getItems());
-        // Add other necessary attributes like the total price
-        return "shoppingcart";
-    }
 
     @GetMapping("/add-to-cart/{productId}")
     public String addToCart(@PathVariable("productId") Integer productId, HttpSession session) {

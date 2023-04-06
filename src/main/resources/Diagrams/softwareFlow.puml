@@ -1,0 +1,42 @@
+@startuml
+title E-commerce Site with Shopping Cart and Stripe
+
+actor User
+
+User -> Browser : Interact with website
+
+package "Frontend" {
+
+[HTML, CSS, JavaScript]
+[Thymeleaf]
+}
+
+[Browser] --> [HTML, CSS, JavaScript] : Render and interact with pages
+[HTML, CSS, JavaScript] --> [Thymeleaf] : Bind data to template
+
+package "Backend" {
+[Spring Boot Controller]
+[ShoppingCart]
+[CartItem]
+[Stripe Integration]
+[API]
+[Product]
+[Order]
+
+}
+
+[Spring Boot Controller] --> [API] : Handle HTTP requests and responses
+[API] --> [ShoppingCart] : Manage cart items
+[API] --> [CartItem] : Represent individual cart items
+[API] --> [Stripe Integration] : Process payments
+[API] --> [Product] : Retrieve product details
+[API] --> [Order] : Create and manage orders
+[API] --> [User] : Authenticate and manage user data
+
+database "Database" {
+[PostgreSQL]
+}
+
+[API] --> [PostgreSQL] : Persist and retrieve data
+
+@enduml
