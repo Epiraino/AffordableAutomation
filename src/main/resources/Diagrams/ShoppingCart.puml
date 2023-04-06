@@ -1,0 +1,32 @@
+@startuml
+title ShoppingCart and CartItem Functionality
+
+class ShoppingCart {
++addItem(item: CartItem): void
++removeItem(item: CartItem): void
++updateItemQuantity(item: CartItem, quantity: int): void
++getTotal(): double
++getItems(): List<CartItem>
+}
+
+class CartItem {
+-product: Product
+-quantity: int
++getProduct(): Product
++setProduct(product: Product): void
++getQuantity(): int
++setQuantity(quantity: int): void
++getSubtotal(): double
+}
+
+class Product {
+-product_id: int
+-title: String
+-description: String
+-price: double
+}
+
+ShoppingCart "1" -- "*" CartItem : contains
+CartItem "1" -- "1" Product : refers to
+
+@enduml

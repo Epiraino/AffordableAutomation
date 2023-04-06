@@ -1,0 +1,44 @@
+@startuml
+title AffordableAutomation Data Model
+
+!define Table(name,desc) class name as "desc" << (T,#FFAAAA) >>
+!define primary_key(x) <u>x</u>
+!define foreign_key(x) #x#
+
+package "Database Tables" {
+
+Table(users, "Users") {
+    primary_key(user_id) : int
+    email : varchar(255)
+    password : varchar(255)
+    first_name : varchar(255)
+    last_name : varchar(255)
+}
+
+Table(products, "Products") {
+    primary_key(product_id) : int
+    title : varchar(255)
+    description : text
+    price : decimal(10,2)
+}
+
+Table(orders, "Orders") {
+    primary_key(order_id) : int
+    foreign_key(user_id) : int
+    foreign_key(product_id) : int
+    status : varchar(50)
+    transaction_id : varchar(255)
+}
+
+Table(user_product, "User-Product") {
+    foreign_key(user_id) : int
+    foreign_key(product_id) : int
+}
+
+users "1" -- "0..*" orders : has
+products "1" -- "0..*" orders : ordered
+users "1" -- "0..*" user_product : has_access_to
+products "1" -- "0..*" user_product : accessible_by
+}
+
+@enduml
